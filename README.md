@@ -1,6 +1,5 @@
 # Spring Boot Parent POM
 
-***
 Spring Boot and JDK 21 based parent POM for Java projects.
 
 ### Requirements
