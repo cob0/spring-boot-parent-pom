@@ -16,6 +16,7 @@
         <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
         <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven.compiler-plugin.version>3.13.0</maven.compiler-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -26,6 +27,11 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
