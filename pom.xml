@@ -23,6 +23,7 @@
         <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <maven.compiler-plugin.version>3.13.0</maven.compiler-plugin.version>
+        <maven.surefire-plugin.version>3.5.0</maven.surefire-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -44,6 +45,15 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire-plugin.version}</version>
+                <configuration>
+                    <argLine>@{argLine}</argLine>
+                    <skipTests>${skipUnitTests}</skipTests>
+                </configuration>
             </plugin>
         </plugins>
     </build>
