@@ -24,6 +24,7 @@
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <maven.compiler-plugin.version>3.13.0</maven.compiler-plugin.version>
         <maven.surefire-plugin.version>3.5.0</maven.surefire-plugin.version>
+        <maven.failsafe-plugin.version>3.5.0</maven.failsafe-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -53,6 +54,15 @@
                 <configuration>
                     <argLine>@{argLine}</argLine>
                     <skipTests>${skipUnitTests}</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe-plugin.version}</version>
+                <configuration>
+                    <argLine>@{argLine}</argLine>
+                    <skipTests>${skipIntegrationTests}</skipTests>
                 </configuration>
             </plugin>
         </plugins>
