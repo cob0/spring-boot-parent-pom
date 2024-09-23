@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: /
+    schedule:
+      interval: weekly
+    assignees:
+      - cob0
+    commit-message:
+      prefix: java
+    labels:
+      - dependencies
+      - java
+    reviewers:
+      - cob0
