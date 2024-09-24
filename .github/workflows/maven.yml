@@ -4,10 +4,10 @@ on:
       - main
   push:
     branches:
-      - 'bugfix/**'
-      - 'feature/**'
-      - 'hotfix/**'
-      - 'release/**'
+      - bugfix/**
+      - feature/**
+      - hotfix/**
+      - release/**
 
 jobs:
   build:
