@@ -13,8 +13,7 @@
     <artifactId>spring-boot-parent-pom</artifactId>
     <version>0.0.3</version>
     <description>Spring Boot and JDK 21 based parent POM for Java projects</description>
-
-    <name>spring-boot-parent-pom</name>
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>21</java.version>
@@ -25,6 +24,10 @@
         <maven.compiler-plugin.version>3.13.0</maven.compiler-plugin.version>
         <maven.surefire-plugin.version>3.5.0</maven.surefire-plugin.version>
         <maven.failsafe-plugin.version>3.5.0</maven.failsafe-plugin.version>
+        <dependency-check-maven.version>10.0.4</dependency-check-maven.version>
+        <dependency-check-maven.failBuildOnCVSS>7</dependency-check-maven.failBuildOnCVSS>
+        <dependency-check-maven.prettyPrint>true</dependency-check-maven.prettyPrint>
+        <dependency-check-maven.versionCheckEnabled>false</dependency-check-maven.versionCheckEnabled>
     </properties>
 
     <dependencyManagement>
@@ -41,6 +44,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>${skipSpringBootMavenRepackage}</skip>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -64,6 +70,39 @@
                     <argLine>@{argLine}</argLine>
                     <skipTests>${skipIntegrationTests}</skipTests>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${dependency-check-maven.version}</version>
+                <configuration>
+                    <formats>
+                        <format>HTML</format>
+                        <format>JSON</format>
+                        <format>CSV</format>
+                    </formats>
+                    <failBuildOnCVSS>${dependency-check-maven.failBuildOnCVSS}</failBuildOnCVSS>
+                    <nvdApiKey>${dependency-check-maven.nvdApiKey}</nvdApiKey>
+                    <prettyPrint>${dependency-check-maven.prettyPrint}</prettyPrint>
+                    <skip>${skipDependencyCheckAnalysis}</skip>
+                    <versionCheckEnabled>${dependency-check-maven.versionCheckEnabled}</versionCheckEnabled>
+                    <yarnAuditAnalyzerEnabled>false</yarnAuditAnalyzerEnabled>
+                    <pnpmAuditAnalyzerEnabled>false</pnpmAuditAnalyzerEnabled>
+                    <nodeAuditAnalyzerEnabled>false</nodeAuditAnalyzerEnabled>
+                    <retireJsAnalyzerEnabled>false</retireJsAnalyzerEnabled>
+                    <nuspecAnalyzerEnabled>false</nuspecAnalyzerEnabled>
+                    <libmanAnalyzerEnabled>false</libmanAnalyzerEnabled>
+                    <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                    <msbuildAnalyzerEnabled>false</msbuildAnalyzerEnabled>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
