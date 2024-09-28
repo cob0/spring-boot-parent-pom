@@ -21,7 +21,7 @@ jobs:
           distribution: temurin
           cache: maven
       - name: Install parent pom locally
-        run: mvn install
+        run: mvn --batch-mode install -DskipDependencyCheckAnalysis=true
       - name: Change to testing folder
         run: cd test
       - name: Verify pull request with Maven
