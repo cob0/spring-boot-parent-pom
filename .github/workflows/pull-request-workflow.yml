@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NVD_API_KEY: ${secrets.NVD_API_KEY}
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -15,4 +17,4 @@ jobs:
           distribution: temurin
           cache: maven
       - name: Validate pull request with Maven
-        run: mvn --batch-mode verify
+        run: mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey="${NVD_API_KEY}"
