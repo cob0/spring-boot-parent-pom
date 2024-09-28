@@ -32,11 +32,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-core</artifactId>
-                <version>9.0.53</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -89,7 +84,7 @@
                     <failBuildOnCVSS>${dependency-check-maven.failBuildOnCVSS}</failBuildOnCVSS>
                     <nvdApiKey>${dependency-check-maven.nvdApiKey}</nvdApiKey>
                     <prettyPrint>${dependency-check-maven.prettyPrint}</prettyPrint>
-                    <skip>${skipDependencyCheckAnalysis}</skip>
+                    <skip>${dependency-check-maven.skip}</skip>
                     <versionCheckEnabled>${dependency-check-maven.versionCheckEnabled}</versionCheckEnabled>
                     <yarnAuditAnalyzerEnabled>false</yarnAuditAnalyzerEnabled>
                     <pnpmAuditAnalyzerEnabled>false</pnpmAuditAnalyzerEnabled>

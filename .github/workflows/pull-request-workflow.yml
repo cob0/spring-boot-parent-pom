@@ -9,7 +9,7 @@ on:
       - synchronize
 
 jobs:
-  build-pull-request:
+  validate-pull-request:
     runs-on: ubuntu-latest
     environment: Default environment
     steps:
@@ -21,7 +21,15 @@ jobs:
           distribution: temurin
           cache: maven
       - name: Install parent pom locally
-        run: mvn --batch-mode install -DskipDependencyCheckAnalysis
+        run: |
+          mvn --batch-mode install -DskipSpringBootMavenRepackage \
+            -DskipUnitTests \
+            -DskipIntegrationTests \
+            -DskipDependencyCheckAnalysis
       - name: Verify test pom.xml
         working-directory: ./test
-        run: mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey=${{ secrets.NVD_API_KEY }}
+        run: |
+          mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey=${{ secrets.NVD_API_KEY }} \
+            -DskipSpringBootMavenRepackage \
+            -DskipUnitTests \
+            -DskipIntegrationTests
