@@ -18,4 +18,4 @@ jobs:
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: |
-          mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey=$NVD_API_KEY
+          mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey=${NVD_API_KEY}
