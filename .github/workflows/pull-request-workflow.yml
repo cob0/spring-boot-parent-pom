@@ -1,7 +1,12 @@
+name: Verify pull request in java environment
+run-name: ${{ github.actor }} is validating pull request
+
 on:
   pull_request:
-    branches:
-      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
 
 jobs:
   build-pull-request:
