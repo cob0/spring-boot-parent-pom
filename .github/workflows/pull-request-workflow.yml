@@ -2,12 +2,6 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - bugfix/**
-      - feature/**
-      - hotfix/**
-      - release/**
 
 jobs:
   build:
@@ -20,5 +14,5 @@ jobs:
           java-version: 21
           distribution: temurin
           cache: maven
-      - name: Build with Maven
+      - name: Validate pull request with Maven
         run: mvn --batch-mode verify
