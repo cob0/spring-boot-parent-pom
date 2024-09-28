@@ -16,4 +16,4 @@ jobs:
           cache: maven
       - name: Verify pull request with Maven
         run: |
-          mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey=${{ secrets.NVD_API_KEY }}
+          mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey="${{ secrets.NVD_API_KEY }}"
