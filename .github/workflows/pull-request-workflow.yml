@@ -4,7 +4,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-pull-request:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,7 +14,6 @@ jobs:
           java-version: 21
           distribution: temurin
           cache: maven
-      - name: Validate pull request with Maven
-        env:
-          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-        run: mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey="$NVD_API_KEY"
+      - name: Verify pull request with Maven
+        run: |
+          mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey=${{ secrets.NVD_API_KEY }}
