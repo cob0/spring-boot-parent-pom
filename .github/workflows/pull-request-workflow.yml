@@ -22,7 +22,6 @@ jobs:
           cache: maven
       - name: Install parent pom locally
         run: mvn --batch-mode install -DskipDependencyCheckAnalysis
-      - name: Change to testing folder
-        run: cd test
-      - name: Verify pull request with Maven
+      - name: Verify test pom.xml
+        working-directory: ./test
         run: mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey=${{ secrets.NVD_API_KEY }}
