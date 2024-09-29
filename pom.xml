@@ -196,8 +196,8 @@
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://github.com/cob0/spring-boot-parent-pom</url>
+            <name>GitHub Maven Packages</name>
+            <url>https://maven.pkg.github.com/cob0/spring-boot-parent-pom</url>
         </repository>
     </distributionManagement>
 </project>
