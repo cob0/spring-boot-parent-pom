@@ -1,0 +1,35 @@
+name: Verify pull request in java environment
+run-name: ${{ github.actor }} is validating pull request
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  validate-pull-request:
+    runs-on: ubuntu-latest
+    environment: Default environment
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: temurin
+          cache: maven
+      - name: Install parent pom locally
+        run: |
+          mvn --batch-mode install -DskipSpringBootMavenRepackage \
+            -DskipUnitTests \
+            -DskipIntegrationTests \
+            -DskipDependencyCheckAnalysis
+      - name: Verify test pom.xml
+        working-directory: ./test
+        run: |
+          mvn --batch-mode verify -Ddependency-check-maven.nvdApiKey=${{ secrets.NVD_API_KEY }} \
+            -DskipSpringBootMavenRepackage \
+            -DskipUnitTests \
+            -DskipIntegrationTests
