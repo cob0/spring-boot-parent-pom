@@ -11,7 +11,7 @@
 
     <groupId>com.cob0</groupId>
     <artifactId>spring-boot-parent-pom</artifactId>
-    <version>0.2.0</version>
+    <version>0.4.0</version>
     <description>Spring Boot and JDK 21 based parent POM for Java projects</description>
     <packaging>pom</packaging>
 
@@ -58,6 +58,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
