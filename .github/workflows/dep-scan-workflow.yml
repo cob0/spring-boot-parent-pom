@@ -19,6 +19,8 @@ jobs:
       packages: read
     steps:
       - uses: cob0/dep-scan-action@master
+        with:
+          src: .
         env:
           VDB_HOME: ${{ github.workspace }}/db
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
