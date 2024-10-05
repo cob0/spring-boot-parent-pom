@@ -55,6 +55,12 @@
                 <version>${lombok-mapstruct-binding.version}</version>
                 <scope>compile</scope>
             </dependency>
+            <!-- remove after test dep-scan tool -->
+            <dependency>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro</artifactId>
+                <version>1.11.3</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
