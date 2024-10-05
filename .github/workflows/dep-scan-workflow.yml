@@ -22,6 +22,8 @@ jobs:
         name: Checkout repository
       - uses: cob0/dep-scan-action@master
         name: Run dependency scanner
+        with:
+          src: ${{ github.workspace }}/test
         env:
           VDB_HOME: ${{ github.workspace }}/db
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
