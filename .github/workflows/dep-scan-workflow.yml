@@ -1,0 +1,26 @@
+name: Run dependency scanner for java environments
+run-name: ${{ github.actor }} is running dependency scanner
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  validate-pull-request:
+    runs-on: ubuntu-latest
+    environment: Default environment
+    steps:
+      - uses: AppThreat/dep-scan-action@master
+        with:
+          src: .
+          report_file: /github/workspace/reports/depscan.json
+          profile: generic
+        env:
+          VDB_HOME: ${{ github.workspace }}/db
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
