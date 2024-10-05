@@ -24,6 +24,8 @@ jobs:
         run: cd test
       - uses: cob0/dep-scan-action@master
         name: Run dependency scanner
+        with:
+          src: .
         env:
           VDB_HOME: ${{ github.workspace }}/db
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
