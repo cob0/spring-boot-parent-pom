@@ -18,6 +18,8 @@ jobs:
     permissions:
       packages: read
     steps:
+      - name: list directories
+        run: ls -lha
       - uses: cob0/dep-scan-action@master
         with:
           src: .
