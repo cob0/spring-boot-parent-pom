@@ -20,6 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: Checkout repository
+        run: ls -lha
       - uses: cob0/dep-scan-action@master
         name: Run dependency scanner
         with:
