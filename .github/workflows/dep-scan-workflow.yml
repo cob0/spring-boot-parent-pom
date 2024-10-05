@@ -18,11 +18,7 @@ jobs:
     permissions:
       packages: read
     steps:
-      - uses: AppThreat/dep-scan-action@master
-        with:
-          src: .
-          report_file: /github/workspace/reports/depscan.json
-          profile: generic
+      - uses: cob0/dep-scan-action@master
         env:
           VDB_HOME: ${{ github.workspace }}/db
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
