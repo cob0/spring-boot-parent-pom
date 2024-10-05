@@ -12,7 +12,7 @@ on:
       - synchronize
 
 jobs:
-  validate-pull-request:
+  run-dependency-scanner:
     runs-on: ubuntu-latest
     environment: Default environment
     steps:
