@@ -19,9 +19,9 @@ jobs:
       packages: read
     steps:
       - uses: actions/checkout@v4
+        name: Checkout repository
       - uses: cob0/dep-scan-action@master
-        with:
-          src: .
+        name: Run dependency scanner
         env:
           VDB_HOME: ${{ github.workspace }}/db
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
