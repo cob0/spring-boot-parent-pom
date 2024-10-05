@@ -18,8 +18,7 @@ jobs:
     permissions:
       packages: read
     steps:
-      - name: list directories
-        run: ls -lha
+      - uses: actions/checkout@v4
       - uses: cob0/dep-scan-action@master
         with:
           src: .
