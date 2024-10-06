@@ -29,3 +29,5 @@ jobs:
         env:
           VDB_HOME: ${{ github.workspace }}/db
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: print report files
+        run: cd reports && ls -lha
