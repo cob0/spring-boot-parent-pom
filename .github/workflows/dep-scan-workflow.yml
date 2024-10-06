@@ -22,10 +22,11 @@ jobs:
         name: Checkout repository
       - name: Move to the test folder
         run: cd test
-      - uses: cob0/dep-scan-action@master
+      - uses: cob0/dep-scan-and-check-action@master
         name: Run dependency scanner
         with:
           src: .
+          check_cvss_score_threshold: 7
         env:
           VDB_HOME: ${{ github.workspace }}/db
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

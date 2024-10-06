@@ -2,5 +2,7 @@
 .mvn/
 mvnw
 mvnw.cmd
+pom.xml.releaseBackup
 
+test/reports
 target
