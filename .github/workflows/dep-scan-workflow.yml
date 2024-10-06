@@ -1,0 +1,36 @@
+name: Run dependency scanner for java environments
+run-name: ${{ github.actor }} is running dependency scanner
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  run-dependency-scanner:
+    runs-on: ubuntu-latest
+    environment: Default environment
+    permissions:
+      packages: read
+    steps:
+      - uses: actions/checkout@v4
+        id: checkout
+        name: Checkout repository
+      - name: Move to the test folder
+        run: cd test
+      - uses: cob0/dep-scan-and-check-action@master
+        if: steps.checkout.outcome == 'success'
+        name: Run dependency scanner
+        with:
+          src: .
+          check_cvss_score_threshold: 7
+        env:
+          VDB_HOME: ${{ github.workspace }}/db
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: print report files
+        run: cd reports && ls -lha
