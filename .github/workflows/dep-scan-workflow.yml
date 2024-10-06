@@ -19,10 +19,12 @@ jobs:
       packages: read
     steps:
       - uses: actions/checkout@v4
+        id: checkout
         name: Checkout repository
       - name: Move to the test folder
         run: cd test
       - uses: cob0/dep-scan-and-check-action@master
+        if: steps.checkout.outcome == 'success'
         name: Run dependency scanner
         with:
           src: .
